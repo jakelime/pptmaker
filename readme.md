@@ -10,34 +10,36 @@ PPMK is a basic GUI for generating wafer map reports
 
 Read the full guide here: [git & ssh helper](https://github.com/jakelime/guide-git-ssh/).
 
-### Setting up `python` on `MacOS`
+### Using `MacOS`
 
-Download `python` from official source,
-[PSF](https://www.python.org/downloads/macos/)
+1. Download `python` from official source,
+   [PSF](https://www.python.org/downloads/macos/)
 
-```bash
+2. Install `python`
 
-N2390113:~ jli8$ which python3
-/Library/Frameworks/Python.framework/Versions/3.10/bin/python3
-N2390113:~ jli8$ python3 --version
-Python 3.10.10
+   ```bash
 
-N2390113:190-pptmaker jli8$ python3 -m venv venv
-N2390113:190-pptmaker jli8$ source venv/bin/activate
-(venv) N2390113:190-pptmaker jli8$ which python
-/Users/jli8/Library/CloudStorage/SynologyDrive-OnDemand/190-pptmaker/venv/bin/python
-(venv) N2390113:190-pptmaker jli8$ python --version
-Python 3.10.10
+   N2390113:~ jli8$ which python3
+   /Library/Frameworks/Python.framework/Versions/3.10/bin/python3
+   N2390113:~ jli8$ python3 --version
+   Python 3.10.10
 
-(venv) N2390113:190-pptmaker jli8$ python -m pip install -r requirements-macos.txt
+   N2390113:190-pptmaker jli8$ python3 -m venv venv
+   N2390113:190-pptmaker jli8$ source venv/bin/activate
+   (venv) N2390113:190-pptmaker jli8$ which python
+   /Users/jli8/Library/CloudStorage/SynologyDrive-OnDemand/190-pptmaker/venv/bin/python
+   (venv) N2390113:190-pptmaker jli8$ python --version
+   Python 3.10.10
 
-# Execute the app
-(venv) N2390113:190-pptmaker jli8$ python tetk/main.py
+   (venv) N2390113:190-pptmaker jli8$ python -m pip install -r requirements-macos.txt
 
-# Run pyinstaller
-(venv) N2390113:190-pptmaker jli8$ pyinstaller tetk/main.py --name tetk --add-data=tetk/bundles/*:bundles/ --windowed --icon=icon.png
+   # Execute the app
+   (venv) N2390113:190-pptmaker jli8$ python tetk/main.py
 
-```
+   # Run pyinstaller
+   (venv) N2390113:190-pptmaker jli8$ pyinstaller tetk/main.py --name tetk --add-data=tetk/bundles/*:bundles/ --windowed --icon=icon.png
+
+   ```
 
 ### Setting up `python` on `Windows`
 
