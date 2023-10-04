@@ -72,15 +72,12 @@ def get_path_bundles():
 def chgdict_changekeyvalues(
     log: logging.Logger, d: dict, required_key: str, new_value, case_sensitive=False
 ):
-
     for k, v in d.items():
-
         if isinstance(v, dict):
             chgdict_changekeyvalues(log, v, required_key, new_value)
 
         else:
             if isinstance(v, str):
-
                 if not case_sensitive:
                     if v.lower() == required_key.lower():
                         d[k] = new_value
@@ -127,7 +124,6 @@ def output(
     logleveldebug: bool = False,
 ):
     try:
-
         if isinstance(fpath, Path):
             parent_folder = fpath.parent
             fname = fpath.name
@@ -183,7 +179,10 @@ def filter_strings(value):
     outvalue = outvalue.strip()
     return outvalue
 
-def copy_version_to_userConfigFolder(srcDir: Path, dstDir: Path, filename: str="version.txt"):
+
+def copy_version_to_userConfigFolder(
+    srcDir: Path, dstDir: Path, filename: str = "version.txt"
+):
     src = srcDir / filename
     dst = dstDir / filename
     try:
@@ -244,7 +243,6 @@ def setup_stream_logger(loglevel=logging.INFO):
 
 
 if __name__ == "__main__":
-
     log = setup_stream_logger()
 
     cwd = Path(__file__)

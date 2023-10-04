@@ -1,15 +1,15 @@
 software_version: 1.0.0
 recipe_version: 0.0.2
-project_name: Eviyos_WaferMapsPPT
+project_name: pptMaker
 user_OS_default: '~/Documents/'
-user_working_dir_name: _TOOLS-eviyosPptMaker
+user_working_dir_name: _TOOLS-pptMaker
 folders_key_names:
   inpf01: 00-input-folder
   outf01: 01-output-ppt
   outf02: 02-debugging
 files_key_names:
   recipe1: anotherRecipe.yml
-  ppt_template1: ppt_template01.pptx
+  ppt_template1: Water-Colored-Splashes-PowerPoint-Template.pptx
 folders_to_clear: ['outf01', 'outf02']
 debug_mode: False
 
