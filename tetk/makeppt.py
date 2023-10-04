@@ -8,8 +8,7 @@ import PIL
 import math
 
 import commons as cf
-from reader import FileManager
-
+from utils import PathFinder
 
 class PptManager:
     def __init__(self, cfg: dict, filepath_template: Path) -> None:
@@ -44,7 +43,8 @@ class PptManager:
     ):
         log = self.cfg.log
         root = self.root
-        slide = root.slides.add_slide(root.slide_layouts[3])
+        print(f"{root.slide_layouts=}")
+        slide = root.slides.add_slide(root.slide_layouts[0])
         cols = math.ceil(math.sqrt(len(images)))
         n = len(images)
         images = list(self.split_list(images, cols))
@@ -80,7 +80,7 @@ class PptManager:
                     top=Cm(coor_y),
                     width=Cm(fixed_width),
                 )
-                wafer_id = imgpath.name.split("-")[-2]
+                wafer_id = imgpath.name
                 try:
                     wafer_id = int(wafer_id)
                 except Exception:
@@ -186,32 +186,37 @@ class PptManager:
                 legend_firstRow = []
                 legend_secondRow = []
 
-    def save_ppt(self):
-        outname = f"output-{cf.get_time()}.pptx"
+    def save_ppt(self, outname=""):
+        if not outname:
+            outname = f"output-{cf.get_time()}.pptx"
         outpath = self.cfg.user_folders["outf01"] / outname
         self.root.save(outpath)
         cf.output(self.cfg.log, outpath)
 
 
 def makeppt(cfg):
-    fmgr = FileManager(cfg, cfg.user_folders["inpf01"])
+    # fmgr = FileManager(cfg, cfg.user_folders["inpf01"])
+    fm = PathFinder()
+    imgs = fm.get_image_files(".png")    
 
     ppt = PptManager(cfg, cfg.user_files["ppt_template1"])
+    ppt.insert_images_wafersPerLot("images", imgs)
+    ppt.save_ppt()
 
     # data = fmgr.construct_lotPerPage()
-    # for i, (wafer_id, wafer_imgpaths) in enumerate(data.items()):
-    #     cfg.log.info(f"{wafer_id=}; {len(wafer_imgpaths)=}")
-    #     ppt.insert_images_wafersPerLot(wafer_id, wafer_imgpaths)
+    # # for i, (wafer_id, wafer_imgpaths) in enumerate(data.items()):
+    # #     cfg.log.info(f"{wafer_id=}; {len(wafer_imgpaths)=}")
+    # #     ppt.insert_images_wafersPerLot(wafer_id, wafer_imgpaths)
 
-    data = fmgr.construct_singleWafers()
-    ppt.insert_images_singleWaferCompare(
-        df=data,
-        stepsize_x=cfg["wafer_id_single_size_width_cm"],
-        stepsize_y=cfg["wafer_id_single_size_width_cm"],
-        fixed_width=cfg["wafer_id_single_size_width_cm"],
-    )
+    # data = fmgr.construct_singleWafers()
+    # ppt.insert_images_singleWaferCompare(
+    #     df=data,
+    #     stepsize_x=cfg["wafer_id_single_size_width_cm"],
+    #     stepsize_y=cfg["wafer_id_single_size_width_cm"],
+    #     fixed_width=cfg["wafer_id_single_size_width_cm"],
+    # )
 
-    ppt.save_ppt()
+    # ppt.save_ppt()
 
 
 if __name__ == "__main__":

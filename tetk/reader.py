@@ -2,6 +2,7 @@ from collections import namedtuple
 import pandas as pd
 from pathlib import Path
 from commons import get_time
+from utils import PathFinder
 # pd.set_option("display.max_columns", None)
 # pd.set_option("display.max_rows", None)
 
@@ -35,7 +36,7 @@ class FileManager:
         self.folderpath = folderpath
 
         self.FileTableStructure = namedtuple("Data", "foldername filename filepath")
-        self.get_filetable(self.folderpath)
+        # self.get_filetable(self.folderpath)
 
     def get_filetable(self, folderpath: Path) -> pd.DataFrame:
         self.log.debug(f"input folder is {folderpath.resolve()}")
@@ -55,14 +56,14 @@ class FileManager:
             raise ValueError(
                 "empty dataframe. is `input_validation` configured correctly?"
             )
-        df = df[df["foldername"].isin(self.cfg["input_validation"])]
-        df["throwaway"] = df["filename"].apply(lambda x: len(x.split("_")))
-        df = df[df["throwaway"] < self.cfg["throwaway_threshold"]]
-        df["temp"] = df["foldername"].apply(lambda x: x.replace("C", ""))
-        df["temp"] = pd.to_numeric(df["temp"], downcast="integer", errors="coerce")
-        df["product_id"] = df["filename"].apply(lambda x: x.split("_")[0])
-        df["lot_id"] = df["filename"].apply(lambda x: x.split("_")[1])
-        df["wafer_id"] = df["filename"].apply(lambda x: x.split("_")[2].split("-")[1])
+        # df = df[df["foldername"].isin(self.cfg["input_validation"])]
+        # df["throwaway"] = df["filename"].apply(lambda x: len(x.split("_")))
+        # df = df[df["throwaway"] < self.cfg["throwaway_threshold"]]
+        # df["temp"] = df["foldername"].apply(lambda x: x.replace("C", ""))
+        # df["temp"] = pd.to_numeric(df["temp"], downcast="integer", errors="coerce")
+        # df["product_id"] = df["filename"].apply(lambda x: x.split("_")[0])
+        # df["lot_id"] = df["filename"].apply(lambda x: x.split("_")[1])
+        # df["wafer_id"] = df["filename"].apply(lambda x: x.split("_")[2].split("-")[1])
 
         self.df = df
 
@@ -129,14 +130,18 @@ class FileManager:
 
 def run(cfg: dict) -> list[pd.DataFrame]:
 
-    fmgr = FileManager(cfg, cfg.user_folders["inpf01"])
-    if fmgr.construct_lotPerPage() is not None:
-        cfg.log.info("FileManager construction sucessful.")
+    # print(cfg)
+    # images_folder = 
+    fm = PathFinder()
+    imgs = fm.get_image_files(".png")
+    # fmgr = FileManager(cfg, cfg.user_folders["inpf01"])
+    # if fmgr.construct_lotPerPage() is not None:
+    #     cfg.log.info("FileManager construction sucessful.")
 
-    # fmgr.pprint()
+    # # fmgr.pprint()
 
-    data = fmgr.construct_singleWafers()
-    print(data)
+    # data = fmgr.construct_singleWafers()
+    # print(data)
     # [print(f"{k}: {len(v)}") for k, v in data.items()]
 
 

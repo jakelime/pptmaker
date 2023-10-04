@@ -1,4 +1,5 @@
 import sys
+import shutil
 from pathlib import Path
 import tkinter as tk
 from tkinter import ttk
@@ -15,6 +16,7 @@ from commons import InvalidPathError
 import config
 from reader import FileManager
 from makeppt import PptManager
+from utils import PathFinder
 
 
 def update_config_details(cfg):
@@ -436,20 +438,32 @@ class MainFrameAA(ttk.Frame):
             cfg = self.root.cfg
 
             self.root.functional_buttons["detect_images"].invoke()
-            fmgr = FileManager(cfg, cfg.user_folders["inpf01"])
-            data = fmgr.construct_lotPerPage()
-            ppt = PptManager(cfg, cfg.user_files["ppt_template1"])
-            for i, (wafer_id, wafer_imgpaths) in enumerate(data.items()):
-                cfg.log.info(f"lotRun{i:03d}: {wafer_id=}; {len(wafer_imgpaths)=}")
-                ppt.insert_images_wafersPerLot(wafer_id, wafer_imgpaths)
 
-            data = fmgr.construct_singleWafers()
-            ppt.insert_images_singleWaferCompare(
-                df=data,
-                stepsize_x=cfg["wafer_id_single_size_width_cm"],
-                stepsize_y=cfg["wafer_id_single_size_width_cm"],
-                fixed_width=cfg["wafer_id_single_size_width_cm"],
-            )
+            # fm = PathFinder()
+            # imgs = fm.get_image_files(".png")
+
+            # ppt = PptManager(cfg, cfg.user_files["ppt_template1"])
+            # ppt.insert_images_wafersPerLot("images", imgs)
+            # ppt.save_ppt()
+
+            # fmgr = FileManager(cfg, cfg.user_folders["inpf01"])
+            # data = fmgr.construct_lotPerPage()
+            ppt = PptManager(cfg, cfg.user_files["ppt_template1"])
+            fm = PathFinder(cwd=cfg.user_folders["inpf01"])
+            imgs = fm.get_image_files(".png")
+            ppt.insert_images_wafersPerLot("images", imgs)
+
+            # for i, (wafer_id, wafer_imgpaths) in enumerate(data.items()):
+            #     cfg.log.info(f"lotRun{i:03d}: {wafer_id=}; {len(wafer_imgpaths)=}")
+            #     ppt.insert_images_wafersPerLot(wafer_id, wafer_imgpaths)
+
+            # data = fmgr.construct_singleWafers()
+            # ppt.insert_images_singleWaferCompare(
+            #     df=data,
+            #     stepsize_x=cfg["wafer_id_single_size_width_cm"],
+            #     stepsize_y=cfg["wafer_id_single_size_width_cm"],
+            #     fixed_width=cfg["wafer_id_single_size_width_cm"],
+            # )
             ppt.save_ppt()
 
         except Exception as e:
@@ -550,14 +564,33 @@ class MainFrameAB(ttk.Frame):
             self.root.log.error(f"{cfr().f_code.co_name}();{e}")
 
     def detect_input_images(self):
+        log = self.root.log
         try:
-            log = self.root.log
             self.scrolled_text.delete("1.0", tk.END)
-            fmgr = FileManager(self.root.cfg, self.root.cfg.user_folders["inpf01"])
-            self.display_scrolled_text(
-                self.scrolled_text,
-                fmgr.pprint(text_descr="Count of Images Detected"),
-            )
+            # fmgr = FileManager(self.root.cfg, self.root.cfg.user_folders["inpf01"])
+            # print(f"{self.root.cfg.user_folders['inpf01']=}")
+            fmgr = PathFinder(cwd=self.root.cfg.user_folders["inpf01"])
+            try:
+                imgs = fmgr.get_image_files()
+            except Exception:
+                # band aid to show example, this code will not be used
+                imgs = []
+
+            if not imgs:
+                log.error(
+                    "No images found, extracting examples from resource folder..."
+                )
+                resource_mgr = PathFinder()
+                imgs = resource_mgr.get_image_files()
+                for img in imgs:
+                    shutil.copy(img, self.root.cfg.user_folders["inpf01"])
+                    log.info(f"copied {img.name}")
+
+            # [log.warning(x) for x in imgs]
+            # self.display_scrolled_text(
+            #     self.scrolled_text,
+            #     fmgr.pprint(text_descr="Count of Images Detected"),
+            # )
             log.info("detect_input_images() done")
         except Exception as e:
             log.error(f"{cfr().f_code.co_name}();{e}")
