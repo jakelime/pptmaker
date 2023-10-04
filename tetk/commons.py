@@ -12,7 +12,7 @@ import sys
 import re
 
 
-def get_latest_git_tag(repo_path: Path = None, err_code: str = "versionError"):
+def get_latest_git_tag(repo_path: Path = None, err_code: str = "versionError") -> str:
     """function to use GitPython to get a list of tags
 
     :param repo_path: path where .git resides in
@@ -20,6 +20,7 @@ def get_latest_git_tag(repo_path: Path = None, err_code: str = "versionError"):
     :return: latest git tag
     :rtype: str
     """
+    results = ""
     try:
         sp = subprocess.run(
             ["git", "describe", "--tag"],
