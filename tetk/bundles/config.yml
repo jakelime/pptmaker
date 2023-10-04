@@ -1,0 +1,41 @@
+software_version: 1.0.0
+recipe_version: 0.0.2
+project_name: Eviyos_WaferMapsPPT
+user_OS_default: '~/Documents/'
+user_working_dir_name: _TOOLS-eviyosPptMaker
+folders_key_names:
+  inpf01: 00-input-folder
+  outf01: 01-output-ppt
+  outf02: 02-debugging
+files_key_names:
+  recipe1: anotherRecipe.yml
+  ppt_template1: ppt_template01.pptx
+folders_to_clear: ['outf01', 'outf02']
+debug_mode: False
+
+
+# these are the folders that must be found inside the input folder
+input_validation: ['25C', '110C']
+throwaway_threshold: 4
+
+# wafer map image settings
+original_image_size: [422, 477]
+# left, upper, right, and bottom edges of the region that you wish to crop.
+crop_coords: [0, 55, 422, 477]
+
+# Coordinates of the origin to start plotting, powerpoint CM units
+coor_x_origin: 1.67
+coor_y_origin: 3.26
+# powerpoint font size points
+wafer_id_text_size: 14
+wafer_id_text_y_offset: -1
+wafer_id_textbox_width_cm: 10
+wafer_id_textbox_height_cm: 2
+
+wafer_id_legend_x_offset_cm: 15
+wafer_id_legend_y_offset_cm: 0
+
+wafer_id_single_size_width_cm: 6
+wafer_id_single_txtbox_loc_offset_x_cm: 0
+wafer_id_single_txtbox_loc_offset_y_cm: 12
+wafer_id_single_txtbox_text_size_pt: 12
