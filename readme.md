@@ -42,7 +42,7 @@ The tkinter interface is not tested because of the complexity. Only functional u
 
 1. test_main_production_run()
    - full sequence of production run step
-   - a pytest-results-20231005_032538.pptx output is generated if successful
+   - an output file (`pytest-results-20231005_032538.pptx`) is generated if successful
 
 ## Detailed guide
 
