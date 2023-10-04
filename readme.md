@@ -17,24 +17,32 @@ Once the GUI application is started, follow the `buttons` and read the logs for 
 
 Basic usage - load files into `input dir`, click `run`, results will be contained in `output dir`
 
-
 ## Running unittests
 
 `pytest` is used in this project. Used `pytest -v` for automated testing.
 
 ```bash
-(py311) ➜  pptmaker git:(main) pytest -v             
+(py311) ➜  pptmaker git:(main) pytest -v
 ================================================================= test session starts ==================================================================
 platform darwin -- Python 3.11.5, pytest-7.4.2, pluggy-1.3.0 -- /Users/jakelim/anaconda3/envs/py311/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/jakelim/SynologyDrive/cloud-active_project/pptmaker
-collected 2 items                                                                                                                                      
+collected 2 items
 
 tetk/test_main.py::test_detect_images PASSED                                                                                                     [ 50%]
 tetk/test_main.py::test_main_production_run PASSED                                                                                               [100%]
 
 ================================================================== 2 passed in 1.19s ===================================================================
 ```
+
+The tkinter interface is not tested because of the complexity. Only functional unittests are conducted.
+
+1. test_detect_images()
+   - intermediate step required to ensure that there are input files
+
+1. test_main_production_run()
+   - full sequence of production run step
+   - a pytest-results-20231005_032538.pptx output is generated if successful
 
 ## Detailed guide
 
