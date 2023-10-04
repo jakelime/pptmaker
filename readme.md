@@ -15,7 +15,7 @@ Read the full guide here: [git & ssh helper](https://github.com/jakelime/guide-g
 1. Download `python` from official source,
    [PSF](https://www.python.org/downloads/macos/)
 
-2. Install `python`
+1. Install `python`, create virtual environment `venv` and then `pip install -r requirements.txt`
 
    ```bash
 
@@ -32,13 +32,16 @@ Read the full guide here: [git & ssh helper](https://github.com/jakelime/guide-g
    Python 3.10.10
 
    (venv) N2390113:190-pptmaker jli8$ python -m pip install -r requirements-macos.txt
+   ```
 
-   # Execute the app
+1. Execute the app using `python`
+   ```bash
    (venv) N2390113:190-pptmaker jli8$ python tetk/main.py
+   ```
 
-   # Run pyinstaller
-   (venv) N2390113:190-pptmaker jli8$ pyinstaller tetk/main.py --name tetk --add-data=tetk/bundles/*:bundles/ --windowed --icon=icon.png
-
+1. Compile executable using `pyinstaller`
+   ```bash
+   (venv) N2390113:190-pptmaker jli8$ pyinstaller tetk/main.py --name tetk --add-data=tetk/bundles/\*:bundles/ --windowed --icon=icon.png
    ```
 
 ### Setting up `python` on `Windows`
