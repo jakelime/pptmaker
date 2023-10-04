@@ -4,11 +4,11 @@ Using tetk framework (python3.10, tkinter UI),
 
 PPMK is a basic GUI for generating wafer map reports
 
-## Set up guide
+## Detailed guide
 
 ### How to use version control
 
-Read the full guide here: [git & ssh helper](https://github.com/jakelime/guide-git-ssh/).
+Refer to detailed guide here for [git & ssh](https://github.com/jakelime/guide-git-ssh/).
 
 ### Using `MacOS`
 
@@ -35,6 +35,7 @@ Read the full guide here: [git & ssh helper](https://github.com/jakelime/guide-g
    ```
 
 1. Execute the app using `python`
+
    ```bash
    (venv) N2390113:190-pptmaker jli8$ python tetk/main.py
    ```
@@ -47,20 +48,33 @@ Read the full guide here: [git & ssh helper](https://github.com/jakelime/guide-g
 ### Setting up `python` on `Windows`
 
 1.  Download latest python3.10 stable from [PSF](https://www.python.org/downloads/)
-2.  Install locally for single user, modify path variable
-3.  Use powershell(`pwsh`) or commandprompt(`cmd.exe`). Commands may differ but concept is the same
 
-```powershell
-PS C:\> cd ~
-PS C:\Users\jli8> cd "~\AppData\Local\Programs\Python\Python310"
-PS C:\Users\jli8\AppData\Local\Programs\Python\Python310> .\python.exe --version
-Python 3.10.10
-PS C:\Users\jli8\AppData\Local\Programs\Python\Python310> .\python.exe -m venv ~\git_repos\pptmaker\venv
-PS C:\Users\jli8\AppData\Local\Programs\Python\Python310> .\git_repos\pptmaker\venv\Scripts\activate
-(venv) PS C:\Users\jli8\AppData\Local\Programs\Python\Python310> cd ~\git_repos\pptmaker\
-(venv) PS C:\Users\jli8\git_repos\pptmaker> python -m pip install -r requirements-win.txt
-(venv) PS C:\Users\jli8\git_repos\pptmaker> pyinstaller .\tetk\main.py --name tetk --add-data "tetk/bundles/*;bundles/" --windowed --icon="tetk/bundles/icon.ico" --noconfirm
-```
+1.  Install locally for single user, modify path variable
+
+1.  Use powershell(`pwsh`) or commandprompt(`cmd.exe`). Commands may differ but concept is the same
+
+1.  Make sure you are using `venv`, and double check your `python` path
+
+    ```powershell
+    PS C:\> cd ~
+    PS C:\Users\jli8> cd "~\AppData\Local\Programs\Python\Python310"
+    PS C:\Users\jli8\AppData\Local\Programs\Python\Python310> .\python.exe --version
+    Python 3.10.10
+    PS C:\Users\jli8\AppData\Local\Programs\Python\Python310> .\python.exe -m venv ~\git_repos\pptmaker\venv
+    PS C:\Users\jli8\AppData\Local\Programs\Python\Python310> .\git_repos\pptmaker\venv\Scripts\activate
+    (venv) PS C:\Users\jli8\git_repos\pptmaker> python -m pip install -r requirements-win.txt
+    ```
+
+1.  Execute the app using `python`
+
+    ```powershell
+    (venv) PS C:\Users\jli8\git_repos\pptmaker> python .\tetk\main.py
+    ```
+
+1.  Compile executable using `pyinstaller`
+    ```powershell
+    (venv) PS C:\Users\jli8\git_repos\pptmaker> pyinstaller .\tetk\main.py --name tetk --add-data "tetk/bundles/*;bundles/" --windowed --icon="tetk/bundles/icon.ico" --noconfirm
+    ```
 
 ## Changelogs
 
