@@ -4,7 +4,27 @@ Using tetk framework (python3.10, tkinter UI),
 
 PPMK is a basic GUI for generating wafer map reports
 
+## Quickstart
+
+```bash
+git clone git@github.com:jakelime/pptmaker.git
+pip install -r requirements-win.txt
+cd pptmaker
+python tetk/main.py
+```
+
+Once the GUI application is started, follow the `buttons` and read the logs for instructions.
+
+Basic usage - load files into `input dir`, click `run`, results will be contained in `output dir`
+
 ## Detailed guide
+
+### Description
+
+- App is customizable using recipe control
+  - Switch between recipes using `File > Recipe`
+  - Create new file `recipe.yml` for new projects
+  - Variables are set inside the `recipe.yml` file
 
 ### How to use version control
 
@@ -49,7 +69,7 @@ Refer to detailed guide here for [git & ssh](https://github.com/jakelime/guide-g
 
 1.  Download latest python3.10 stable from [PSF](https://www.python.org/downloads/)
 
-1.  Install locally for single user, modify path variable
+1.  Install locally for single user, select `modify path variable`
 
 1.  Use powershell(`pwsh`) or commandprompt(`cmd.exe`). Commands may differ but concept is the same
 
