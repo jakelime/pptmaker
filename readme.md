@@ -38,6 +38,7 @@ tetk/test_main.py::test_main_production_run PASSED                              
 The tkinter interface is not tested because of the complexity. Only functional unittests are conducted.
 
 1. test_detect_images()
+
    - intermediate step required to ensure that there are input files
 
 1. test_main_production_run()
@@ -58,13 +59,11 @@ The tkinter interface is not tested because of the complexity. Only functional u
 This app is designed using the `tetk` framework (python3.10, tkinter UI)
 `tetk` is Test Engineer Tool Kit, another app with GUI interface to provide different custom tools for test engineers.
 
-
-
 ### How to use version control
 
 Refer to detailed guide here for [git & ssh](https://github.com/jakelime/guide-git-ssh/).
 
-### Using `MacOS`
+### Running source code on `MacOS`
 
 1. Download `python` from official source,
    [PSF](https://www.python.org/downloads/macos/)
@@ -99,7 +98,7 @@ Refer to detailed guide here for [git & ssh](https://github.com/jakelime/guide-g
    (venv) N2390113:190-pptmaker jli8$ pyinstaller tetk/main.py --name tetk --add-data=tetk/bundles/\*:bundles/ --windowed --icon=icon.png
    ```
 
-### Setting up `python` on `Windows`
+### Running source code on `Windows`
 
 1.  Download latest python3.10 stable from [PSF](https://www.python.org/downloads/)
 
@@ -132,7 +131,7 @@ Refer to detailed guide here for [git & ssh](https://github.com/jakelime/guide-g
 
 ## Changelogs
 
-- v1.2.0
+- `v1.2.0`
   - Added error catching features
     - Use debug=True in configuration file
     - Hashmap of input file to aid in debugging
@@ -140,7 +139,7 @@ Refer to detailed guide here for [git & ssh](https://github.com/jakelime/guide-g
     - Bad image will be skipped
     - The coor_x, coor_y of the bad image will be empty, but
       subsequent images will continue processing
-- v1.0.0
+- `v1.0.0`
   - KEY Feature: Detects
     - wafer images in `input folder`
     - sorts, throwaway (discard)
