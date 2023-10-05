@@ -1,8 +1,8 @@
 # PPT Maker
 
-Using tetk framework (python3.10, tkinter UI),
+PPMK is a GUI for generating wafer map reports, in editable `.pptx` format.
 
-PPMK is a basic GUI for generating wafer map reports
+The objective is to assist in compile large number of images into for report and presentations.
 
 ## Quickstart
 
@@ -44,7 +44,7 @@ The tkinter interface is not tested because of the complexity. Only functional u
    - full sequence of production run step
    - an output file (`pytest-results-20231005_032538.pptx`) is generated if successful
 
-## Detailed guide
+## Details
 
 ### Description
 
@@ -52,6 +52,13 @@ The tkinter interface is not tested because of the complexity. Only functional u
   - Switch between recipes using `File > Recipe`
   - Create new file `recipe.yml` for new projects
   - Variables are set inside the `recipe.yml` file
+
+### Background
+
+This app is designed using the `tetk` framework (python3.10, tkinter UI)
+`tetk` is Test Engineer Tool Kit, another app with GUI interface to provide different custom tools for test engineers.
+
+
 
 ### How to use version control
 
